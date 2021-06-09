@@ -1,5 +1,5 @@
 import java.util.*;
-//    https://deftkang.tistory.com/55
+//    https://deftkang.tistory.com/55 -> nextLine 에러 관련
 class Exam10828 {   
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
