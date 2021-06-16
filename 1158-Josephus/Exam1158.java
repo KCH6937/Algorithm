@@ -9,7 +9,7 @@ class Exam1158 {
         int slot = -1;
         int count = 0;
         
-        List<Integer> list = new LinkedList<Integer>();
+        LinkedList<Integer> list = new LinkedList<Integer>();
         
         for(int i = 1; i <= N; i++) {
             list.add(i);
