@@ -2,52 +2,66 @@ import java.io.*;
 import java.util.*;
 
 public class Exam1935 {
-    private static final int A = 65;
+    public static boolean isAlphabet(char c) {
+        int v = (int)c;
+        if(v >= 65 && v <= 90) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public static int indexIs(char c) {
+        int first = 65;    // alphabet 'A'
+        int index = (int)c - first;
+        return index;
+    }
+    
+    public static double calc(char c, double a, double b) {
+        double ret = 0.d;
+        switch(c) {
+            case '*' :
+                ret = a * b;
+                break;
+            case '+' :
+                ret = a + b;
+                break;
+            case '/' :
+                ret = a / b;
+                break;
+            case '-' :
+                ret = a - b;
+                break;
+        }
+        return ret;
+    }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Stack<Float> stack = new Stack<>();
+        Stack<Double> stack = new Stack<>();
         
         int N = Integer.parseInt(br.readLine());
-        String input = br.readLine();
-        int size = input.length();
+        double[] value = new double[N];
+        String line = br.readLine();
         
-        char[] divStr = input.toCharArray();
-        int[] value = new int[N];
-        int j = 0;
-        float popValue1 = 0, popValue2 = 0;
-        
+        char[] input = line.toCharArray();
+        int size = line.length();
+        int index = 0;
+        double[] popValue = {0, 0};
         
         for(int i = 0; i < N; i++) {
             value[i] = Integer.parseInt(br.readLine());
         }
         
-        int temp = value[0];
-        
         for(int i = 0; i < size; i++) {
-            int judge = divStr[i];            
-            if(judge >= A && judge < A + N) {                
-                temp = temp == judge ? value[j] : value[j < (N-1) ? j++: j];
-                stack.push((float)temp);            
-            } else {            
-                popValue1 = stack.pop();
-                popValue2 = stack.pop();
-                
-                switch(divStr[i]) {
-                    case '+' :                        
-                        stack.push(popValue2 + popValue1);
-                        break;
-                    case '-' :
-                        stack.push(popValue2 - popValue1);
-                        break;
-                    case '*' :
-                        stack.push(popValue2 * popValue1);
-                        break;
-                    case '/' :                        
-                        stack.push(popValue2 / popValue1);
-                }                
+            if(isAlphabet(input[i]) == true) {
+                index = indexIs(input[i]);
+                stack.push((double)value[index]);
+            } else {
+                popValue[1] = stack.pop();
+                popValue[0] = stack.pop();
+                stack.push(calc(input[i], popValue[0], popValue[1]));
             }
         }
-        
-        System.out.format("%.2f", stack.pop());
+        System.out.format("%.2f",stack.pop());
     }
 }
