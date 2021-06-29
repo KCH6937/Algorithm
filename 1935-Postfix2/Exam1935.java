@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Exam1935 {
-    public static boolean isAlphabet(char c) {
+    private static boolean isAlphabet(char c) {
         int v = (int)c;
         if(v >= 65 && v <= 90) {
             return true;
@@ -11,13 +11,13 @@ public class Exam1935 {
         }
     }
     
-    public static int indexIs(char c) {
+    private static int indexIs(char c) {
         int first = 65;    // alphabet 'A'
         int index = (int)c - first;
         return index;
     }
     
-    public static double calc(char c, double a, double b) {
+    private static double calc(char c, double a, double b) {
         double ret = 0.d;
         switch(c) {
             case '*' :
